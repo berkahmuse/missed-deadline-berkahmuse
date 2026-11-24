@@ -31,6 +31,11 @@ def main() -> int:
     os.makedirs(out_dir, exist_ok=True)
     with open(os.path.join(out_dir, "entry.txt"), "w", encoding="utf-8") as f:
         f.write(EXCUSE)
+    # Read back and confirm exactly what was written.
+    with open(os.path.join(out_dir, "entry.txt"), encoding="utf-8") as f:
+        if f.read() != EXCUSE:
+            print("entry.txt does not match EXCUSE", file=sys.stderr)
+            return 1
     return 0
 
 
